@@ -195,7 +195,7 @@ section{scroll-margin-top:72px}
 .atend-lista .est{color:var(--pt)}
 
 /* ---------- 6. contato ---------- */
-.contato{padding:110px 0 0}
+.contato{padding:110px 0}
 .ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
 .ct-grid.so{grid-template-columns:1fr}
 .ct-txt p{font-size:16px;color:#2B2822;max-width:40ch;margin:18px 0 26px}
@@ -716,11 +716,6 @@ function montarContato(){
           '</form>' +
         '</div>' : '') +
       '</div>' +
-    '</div>' +
-    '<div class="cta-am">' +
-      '<svg class="explosao" viewBox="0 0 200 200" aria-hidden="true"><polygon points="' + pontosExplosao() + '"/></svg>' +
-      '<div class="wrap"><h2 class="tit">' + t('ctaTit') + '<span class="mao">' + t('ctaMao') + sublinhado() + '</span></h2>' +
-      '<div class="btns">' + btnContato('btn-pt') + '</div></div>' +
     '</div>';
 
   if (temForm) ligarFormulario();
