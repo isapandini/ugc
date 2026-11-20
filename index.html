@@ -48,6 +48,8 @@ section{scroll-margin-top:72px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:999px;border:2px solid var(--pt);font:800 14px/1 var(--tx);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:transform .2s, box-shadow .2s;white-space:nowrap}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--pt)}
 .btn svg{width:18px;height:18px;flex:none}
+.btn-2l{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left}
+.btn-2l small{font:600 13px/1.1 var(--tx);letter-spacing:.03em;text-transform:none;opacity:.9}
 .btn-am{background:var(--am);color:var(--pt)}
 .btn-pt{background:var(--pt);color:var(--creme2)}
 .btn-pt:hover{box-shadow:4px 4px 0 var(--vm)}
@@ -208,10 +210,6 @@ section{scroll-margin-top:72px}
 .form-erro{margin-top:16px;font-size:14px}
 .form-erro .btn{margin-top:10px;width:auto}
 .gotcha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.duv{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:84px}
-.duv > div{border-top:3px solid var(--pt);padding-top:18px}
-.duv h3{font:600 19px/1.25 var(--se);margin-bottom:8px}
-.duv p{font-size:15px;color:#2B2822}
 .cta-am{position:relative;overflow:hidden;background:var(--am);margin-top:100px;padding:84px 0;border-top:2px solid var(--pt)}
 .cta-am .tit{max-width:15ch;margin:0 0 30px;position:relative;z-index:1}
 .cta-am .mao{color:var(--pt)}
@@ -248,7 +246,6 @@ section{scroll-margin-top:72px}
   .capa-foto{margin-top:30px;max-width:420px}
   .sobre-foto{max-width:380px;margin-top:40px}
   .sobre-grid{gap:56px}
-  .duv{grid-template-columns:1fr 1fr}
   .depo{grid-template-columns:1fr;gap:34px}
   .depo article{padding:26px 0 0;border-left:0;border-top:2px solid rgba(255,255,255,.45)}
   .depo article:first-child{padding-top:0;border-top:0}
@@ -284,7 +281,6 @@ section{scroll-margin-top:72px}
   .abas{flex-wrap:nowrap;overflow-x:auto;margin-left:-16px;margin-right:-16px;padding:2px 16px 8px}
   .grade{grid-template-columns:1fr 1fr;gap:14px}
   .nums{grid-template-columns:1fr;gap:22px}
-  .duv{grid-template-columns:1fr;margin-top:60px}
   .campos{grid-template-columns:1fr}
   .form{padding:20px;box-shadow:5px 5px 0 var(--pt)}
   .faixa-item{font-size:24px}
@@ -425,7 +421,17 @@ function linkContato(){
 function btnContato(classe){
   const c = linkContato();
   const ext = c.tipo === 'zap' ? ' target="_blank" rel="noopener"' : '';
-  return '<a class="btn ' + classe + '" href="' + esc(c.href) + '"' + ext + '>' + (c.tipo === 'zap' ? IC.zap : IC.mail) + esc(c.rotulo) + seta() + '</a>';
+  const num = c.tipo === 'zap' ? numeroVisivel() : '';
+  const rotulo = num ? '<span class="btn-2l"><span>' + esc(c.rotulo) + '</span><small>' + esc(num) + '</small></span>' : esc(c.rotulo);
+  return '<a class="btn ' + classe + '" href="' + esc(c.href) + '"' + ext + '>' + (c.tipo === 'zap' ? IC.zap : IC.mail) + rotulo + seta() + '</a>';
+}
+/* Número do WhatsApp escrito bonito no botão: +55 (48) 99103-2288 */
+function numeroVisivel(){
+  let n = String(DADOS.whatsapp || '').replace(/\D/g,'');
+  if (!n) return '';
+  if (n.length <= 11) n = '55' + n;
+  const m = n.match(/^(\d{2})(\d{2})(\d{4,5})(\d{4})$/);
+  return m ? '+' + m[1] + ' (' + m[2] + ') ' + m[3] + '-' + m[4] : '+' + n;
 }
 
 /* Lacunas listradas: aparecem enquanto a foto/vídeo/texto não existe */
@@ -710,7 +716,6 @@ function montarContato(){
           '</form>' +
         '</div>' : '') +
       '</div>' +
-      '<div class="duv">' + lista('duvidas').map(d => '<div><h3>' + esc(d.pergunta) + '</h3>' + (d.resposta ? '<p>' + esc(d.resposta) + '</p>' : lacTxt(d.dica || 'Escreva a resposta', '')) + '</div>').join('') + '</div>' +
     '</div>' +
     '<div class="cta-am">' +
       '<svg class="explosao" viewBox="0 0 200 200" aria-hidden="true"><polygon points="' + pontosExplosao() + '"/></svg>' +
@@ -998,14 +1003,6 @@ const DADOS = {
   // ou com logo: { nome: 'Marca X', logo: 'midia/logos/marca-x.png' }
   marcas: [],
 
-  // As 4 dúvidas do contato. resposta vazia = lacuna com a dica.
-  duvidas: [
-    { pergunta: 'Onde posso usar o conteúdo?', resposta: '', dica: 'Ex.: orgânico, anúncios pagos, site. Diga o que está incluso no valor.' },
-    { pergunta: 'Por quanto tempo?',           resposta: '', dica: 'Ex.: 3, 6 ou 12 meses de direito de uso.' },
-    { pergunta: 'Tem exclusividade?',          resposta: '', dica: 'Ex.: se você grava pra concorrentes e por quanto tempo não grava.' },
-    { pergunta: 'Qual o prazo?',               resposta: 'Entrego em até 10 dias.' }
-  ],
-
   // VERSÃO EM INGLÊS (botão EN no topo). Mesma ordem dos campos acima.
   // Campo vazio ou que não está aqui = aparece o texto em português.
   en: {
@@ -1027,12 +1024,6 @@ const DADOS = {
     nichos: [
       { nome: 'Beauty' }, { nome: 'Skincare' }, { nome: 'Food' },
       { nome: 'Fitness' }, { nome: 'Supplements' }, { nome: 'Pets' }
-    ],
-    duvidas: [
-      { pergunta: 'Where can I use the content?', resposta: '' },
-      { pergunta: 'For how long?',                resposta: '' },
-      { pergunta: 'Is it exclusive?',             resposta: '' },
-      { pergunta: 'What’s the turnaround?',       resposta: 'Delivered within 10 days.' }
     ]
   }
 };
