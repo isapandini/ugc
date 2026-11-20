@@ -6,7 +6,7 @@
 <title>Isadora Pandini · portfólio UGC</title>
 <meta name="description" content="Isadora Pandini, UGC creator de beleza, skincare, comida, fitness, suplementos e pet. Transformo a sua essência em conteúdo que vende.">
 
-<!-- Prévia do link (WhatsApp, Instagram etc.). TROQUE "MEU-LINK" pelo endereço do site depois de publicar. -->
+<!-- Prévia do link (WhatsApp, Instagram etc.) -->
 <meta property="og:title" content="Isadora Pandini · UGC creator">
 <meta property="og:description" content="Transformo a sua essência em conteúdo que vende.">
 <meta property="og:type" content="website">
@@ -66,9 +66,14 @@ section{scroll-margin-top:72px}
 /* ---------- menu ---------- */
 .topo{position:sticky;top:0;z-index:50;background:var(--creme);border-bottom:2px solid var(--pt)}
 .topo-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
-.logo{font:900 26px/1 var(--bs);text-transform:uppercase;text-decoration:none;display:flex;gap:6px;align-items:center;letter-spacing:.01em}
+.logo{font:900 26px/1 var(--bs);text-transform:uppercase;text-decoration:none;display:flex;gap:6px;align-items:center;letter-spacing:.01em;white-space:nowrap}
+.topo-dir{display:flex;align-items:center;gap:14px}
+.idioma{display:inline-flex;flex:none;border:2px solid var(--pt);border-radius:999px;overflow:hidden;background:var(--creme2)}
+.idioma button{padding:8px 11px;font:800 12px/1 var(--tx);letter-spacing:.08em}
+.idioma button:hover{background:var(--am)}
+.idioma button[aria-pressed="true"]{background:var(--pt);color:var(--creme2)}
 .est{color:var(--vm)}
-.nav{display:flex;gap:22px;align-items:center}
+.nav{display:flex;gap:18px;align-items:center}
 .nav a.l{font:700 13px/1 var(--tx);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
 .nav a.l:hover{color:var(--vm)}
 .nav .btn{padding:11px 18px;font-size:13px}
@@ -97,7 +102,8 @@ section{scroll-margin-top:72px}
 .blob{position:absolute;left:-9%;top:-7%;width:118%;height:114%;fill:var(--am)}
 .pontos{position:absolute;left:-12%;top:-4%;width:120px;height:120px}
 .capa-foto .foto{position:absolute;inset:6% 9% 5% 9%;border:3px solid var(--pt);border-radius:220px 220px 18px 18px}
-.capa-foto .foto img{object-position:58% 30%} .olho{position:absolute;right:-6%;top:4%;width:118px;z-index:2}
+.capa-foto .foto img{object-position:58% 30%}
+.olho{position:absolute;right:-6%;top:4%;width:118px;z-index:2}
 .risco-pt{position:absolute;left:-8%;bottom:-2%;width:190px;z-index:2;fill:none;stroke:var(--pt);stroke-linecap:round}
 
 /* ---------- 2. sobre ---------- */
@@ -105,7 +111,8 @@ section{scroll-margin-top:72px}
 .sobre-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
 .sobre-foto{position:relative;width:100%;max-width:430px;aspect-ratio:4/5;justify-self:center}
 .sobre-foto .foto{position:absolute;inset:0;border:3px solid var(--pt);border-radius:16px}
-.sobre-foto .foto img{object-position:64% 50%} .faixa-lat{position:absolute;left:-20px;top:12%;bottom:12%;width:22px;background:var(--vm);border:2px solid var(--pt);border-radius:4px}
+.sobre-foto .foto img{object-position:64% 50%}
+.faixa-lat{position:absolute;left:-20px;top:12%;bottom:12%;width:22px;background:var(--vm);border:2px solid var(--pt);border-radius:4px}
 .coroa{position:absolute;top:-58px;left:30%;width:110px;fill:none;stroke:var(--pt);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-8deg);z-index:2}
 .texto-sobre{margin-top:22px;font-size:16px;color:#2B2822;max-width:58ch}
 .texto-sobre p+p{margin-top:12px}
@@ -229,7 +236,7 @@ section{scroll-margin-top:72px}
 .player-tit{position:absolute;left:0;right:0;bottom:-34px;text-align:center;color:var(--creme);font:700 13px/1.3 var(--tx);text-transform:uppercase;letter-spacing:.06em}
 
 /* ---------- responsivo ---------- */
-@media (max-width:1020px){
+@media (max-width:1179px){
   .nav{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--creme);padding:6px var(--gut) 20px;border-bottom:2px solid var(--pt)}
   .nav.aberto{display:flex}
   .nav a.l{padding:15px 0;border-bottom:1px solid rgba(21,21,21,.15);font-size:14px}
@@ -261,7 +268,10 @@ section{scroll-margin-top:72px}
   .capa{padding:34px 0 64px}
   .topo-in{height:60px}
   .nav{top:60px}
-  .logo{font-size:22px}
+  .logo{font-size:20px}
+  .topo-dir{gap:8px}
+  .idioma button{padding:7px 9px}
+  .menu-bt{padding:9px 12px}
   .selo{width:110px}
   .nome-wrap{gap:10px}
   .provas{gap:14px 22px}
@@ -338,23 +348,79 @@ const IC = {
   edicao:'<svg viewBox="0 0 48 48"><rect x="13" y="4" width="22" height="40" rx="4"/><path d="M21 18v12l9-6z"/><path d="M4 16c2 2 2 14 0 16M44 16c-2 2-2 14 0 16"/></svg>'
 };
 
+/* ---------- idiomas: textos fixos da página em português e inglês ---------- */
+let LANG = 'pt';
+const T = {
+  pt: {
+    secoes:'Seções', sobre:'Sobre mim', destaques:'Destaques', nichos:'Nichos', marcasTit:'O que as marcas falam', contato:'Contato',
+    falarComigo:'Falar comigo', menu:'Menu', fechar:'Fechar',
+    linha:'UGC creator de ', verVideos:'Ver meus melhores vídeos',
+    oie:'Oie, sou a ', metodo:'Formado no Método Profissão do Futuro · aluno da Rafa Chagas', circulo:'Aluno da Rafa Chagas · formado no método ✸ ',
+    fazTit:'O que eu faço pela ', fazMao:'sua marca',
+    destTit:'Meus melhores vídeos', destP:'Gancho forte, roteiro com estratégia e edição pronta pra anúncio. Clique no vídeo pra assistir com som.', querUm:'Quero um assim',
+    nichosK:'Conteúdo por nichos', nichosTit:'Ache o vídeo do ', nichosMao:'seu nicho',
+    depo:'Depoimentos', atend:'Marcas que já atendi', seloFeedback:'Feedback ✸ real ✸ feedback ✸ real ✸ ',
+    ctTit:'Bora criar ', ctMao:'junto?', ctP:'Me conta do seu produto e eu te respondo com ideia de roteiro, formatos e prazo.',
+    btnZap:'Chamar no WhatsApp', btnMail:'Mandar e-mail', assuntoMail:'Vídeos UGC pra minha marca',
+    msgZap:'Oi, NOME! Vi seu portfólio e quero conversar sobre vídeos pra minha marca.',
+    formTit:'Pede um orçamento rapidinho', fNome:'Seu nome', fEmpresa:'Empresa', fProduto:'Produto', fProdutoPh:'o que vamos divulgar?', fPrazo:'Prazo', fPrazoPh:'pra quando?', fZap:'WhatsApp',
+    fEnviar:'Pedir orçamento', fErro:'Não consegui enviar agora. Me chama direto:', formOk:'Recebi! Te chamo em breve.',
+    ctaTit:'Bora fazer um vídeo que ', ctaMao:'vende?', rodape:'UGC creator · aluno da Rafa Chagas', assistir:'Assistir com som'
+  },
+  en: {
+    secoes:'Sections', sobre:'About me', destaques:'Highlights', nichos:'Niches', marcasTit:'What brands say', contato:'Contact',
+    falarComigo:'Let’s talk', menu:'Menu', fechar:'Close',
+    linha:'UGC creator for ', verVideos:'See my best videos',
+    oie:'Hi, I’m ', metodo:'Graduate of the Profissão do Futuro Method · Rafa Chagas student', circulo:'Rafa Chagas student · method graduate ✸ ',
+    fazTit:'What I do for ', fazMao:'your brand',
+    destTit:'My best videos', destP:'Strong hook, strategic script and ad-ready editing. Click a video to watch it with sound.', querUm:'I want one like this',
+    nichosK:'Content by niche', nichosTit:'Find the video for ', nichosMao:'your niche',
+    depo:'Testimonials', atend:'Brands I’ve worked with', seloFeedback:'Real ✸ feedback ✸ real ✸ feedback ✸ ',
+    ctTit:'Let’s create ', ctMao:'together?', ctP:'Tell me about your product and I’ll reply with a script idea, formats and timeline.',
+    btnZap:'Message me on WhatsApp', btnMail:'Send an email', assuntoMail:'UGC videos for my brand',
+    msgZap:'Hi, NOME! I saw your portfolio and would like to talk about videos for my brand.',
+    formTit:'Get a quick quote', fNome:'Your name', fEmpresa:'Company', fProduto:'Product', fProdutoPh:'what are we promoting?', fPrazo:'Deadline', fPrazoPh:'when do you need it?', fZap:'WhatsApp',
+    fEnviar:'Request a quote', fErro:'I couldn’t send it right now. Message me directly:', formOk:'Got it! I’ll reach out soon.',
+    ctaTit:'Let’s make a video that ', ctaMao:'sells?', rodape:'UGC creator · Rafa Chagas student', assistir:'Watch with sound'
+  }
+};
+function t(k){ const v = T[LANG] && T[LANG][k]; return v != null ? v : T.pt[k]; }
+function traducao(){ return (LANG === 'en' && DADOS.en) ? DADOS.en : null; }
+function d(campo){ const tr = traducao(); return (tr && tr[campo]) ? tr[campo] : DADOS[campo]; }
+function lista(campo){
+  const base = DADOS[campo] || [], tr = traducao(), extra = tr && tr[campo];
+  if (!extra) return base;
+  return base.map((x, i) => {
+    const o = Object.assign({}, x), e = extra[i] || {};
+    Object.keys(e).forEach(k => { if (e[k] !== '' && e[k] != null) o[k] = e[k]; });
+    return o;
+  });
+}
+function nomeNicho(i){ const tr = traducao(), e = tr && tr.nichos && tr.nichos[i]; return (e && e.nome) || DADOS.nichos[i].nome; }
+function idiomaInicial(){
+  let l = '';
+  try { l = new URLSearchParams(location.search).get('lang') || ''; } catch (e) {}
+  if (!l) { try { l = localStorage.getItem('idioma') || ''; } catch (e) {} }
+  return l === 'en' ? 'en' : 'pt';
+}
+
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function slug(s){ return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+function slug(s){ return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
 function primeiroNome(){ return (DADOS.nome || '').trim().split(/\s+/)[0] || ''; }
 function seta(){ return ' <span aria-hidden="true">→</span>'; }
 
 /* Link do WhatsApp com a mensagem pronta (ou e-mail, se não houver WhatsApp) */
 function linkContato(){
-  const msg = 'Oi, ' + primeiroNome() + '! Vi seu portfólio e quero conversar sobre vídeos pra minha marca.';
+  const msg = t('msgZap').replace('NOME', primeiroNome());
   let num = String(DADOS.whatsapp || '').replace(/\D/g,'');
   if (num) {
     if (num.length <= 11) num = '55' + num;
-    return { tipo:'zap', href:'https://wa.me/' + num + '?text=' + encodeURIComponent(msg), rotulo:'Chamar no WhatsApp' };
+    return { tipo:'zap', href:'https://wa.me/' + num + '?text=' + encodeURIComponent(msg), rotulo:t('btnZap') };
   }
   if (DADOS.email) {
-    return { tipo:'mail', href:'mailto:' + DADOS.email + '?subject=' + encodeURIComponent('Vídeos UGC pra minha marca') + '&body=' + encodeURIComponent(msg), rotulo:'Mandar e-mail' };
+    return { tipo:'mail', href:'mailto:' + DADOS.email + '?subject=' + encodeURIComponent(t('assuntoMail')) + '&body=' + encodeURIComponent(msg), rotulo:t('btnMail') };
   }
-  return { tipo:'mail', href:'#contato', rotulo:'Falar comigo' };
+  return { tipo:'mail', href:'#contato', rotulo:t('falarComigo') };
 }
 function btnContato(classe){
   const c = linkContato();
@@ -394,7 +460,7 @@ function cardVideo(v, o){
     if (src) faltando.push(src);
     caixa = '<div class="vbox vazio">' + lacuna(src ? 'Esse link não toca aqui. Baixe o vídeo e coloque o .mp4 em ' + o.arq : o.dica, src ? '' : o.arq, 'video') + '</div>';
   } else {
-    caixa = '<button type="button" class="vbox" data-src="' + esc(src) + '" data-titulo="' + esc(titulo || o.reserva) + '" aria-label="Assistir com som: ' + esc(titulo || o.reserva) + '">' +
+    caixa = '<button type="button" class="vbox" data-src="' + esc(src) + '" data-titulo="' + esc(titulo || o.reserva) + '" aria-label="' + t('assistir') + ': ' + esc(titulo || o.reserva) + '">' +
       '<video muted playsinline loop preload="metadata"' + (v.capa ? ' poster="' + esc(v.capa) + '"' : '') +
       (o.auto && !reduz ? ' autoplay data-auto' : '') +
       ' src="' + esc(src) + '#t=0.1" data-dica="' + esc(o.dica) + '" data-arq="' + esc(src) + '" onerror="videoFalhou(this)"></video>' +
@@ -437,19 +503,25 @@ function sublinhado(){ return '<svg class="risco" viewBox="0 0 120 14" preserveA
 
 /* ---------- partes da página ---------- */
 function montarMenu(){
-  const links = [['#sobre','Sobre mim'],['#destaques','Destaques'],['#nichos','Nichos'],['#marcas','O que as marcas falam'],['#contato','Contato']];
+  const links = [['#sobre', t('sobre')],['#destaques', t('destaques')],['#nichos', t('nichos')],['#marcas', t('marcasTit')],['#contato', t('contato')]];
   document.getElementById('topo').innerHTML =
     '<div class="wrap topo-in">' +
       '<a class="logo" href="#capa">' + esc(DADOS.nome) + ' <span class="est" aria-hidden="true">✸</span></a>' +
-      '<button class="menu-bt" type="button" aria-expanded="false" aria-controls="nav">Menu</button>' +
-      '<nav class="nav" id="nav" aria-label="Seções">' +
-        links.map(l => '<a class="l" href="' + l[0] + '">' + l[1] + '</a>').join('') +
-        '<a class="btn btn-am" href="#contato">Bora trabalhar' + seta() + '</a>' +
-      '</nav>' +
+      '<div class="topo-dir">' +
+        '<nav class="nav" id="nav" aria-label="' + t('secoes') + '">' +
+          links.map(l => '<a class="l" href="' + l[0] + '">' + esc(l[1]) + '</a>').join('') +
+          '<a class="btn btn-am" href="#contato">' + t('falarComigo') + seta() + '</a>' +
+        '</nav>' +
+        '<div class="idioma" role="group" aria-label="Idioma / Language">' +
+          ['pt','en'].map(l => '<button type="button" data-lang="' + l + '" aria-pressed="' + (LANG === l) + '" aria-label="' + (l === 'en' ? 'English' : 'Português') + '">' + l.toUpperCase() + '</button>').join('') +
+        '</div>' +
+        '<button class="menu-bt" type="button" aria-expanded="false" aria-controls="nav">' + t('menu') + '</button>' +
+      '</div>' +
     '</div>';
   const bt = document.querySelector('.menu-bt'), nav = document.getElementById('nav');
-  bt.addEventListener('click', () => { const ab = nav.classList.toggle('aberto'); bt.setAttribute('aria-expanded', ab); bt.textContent = ab ? 'Fechar' : 'Menu'; });
-  nav.addEventListener('click', e => { if (e.target.closest('a')) { nav.classList.remove('aberto'); bt.setAttribute('aria-expanded', false); bt.textContent = 'Menu'; } });
+  bt.addEventListener('click', () => { const ab = nav.classList.toggle('aberto'); bt.setAttribute('aria-expanded', ab); bt.textContent = ab ? t('fechar') : t('menu'); });
+  nav.addEventListener('click', e => { if (e.target.closest('a')) { nav.classList.remove('aberto'); bt.setAttribute('aria-expanded', false); bt.textContent = t('menu'); } });
+  document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', () => trocarIdioma(b.dataset.lang)));
 }
 
 function numeroProva(p){
@@ -465,10 +537,10 @@ function montarCapa(){
         '<div class="nome-wrap"><h1 class="nome">' + palavras.map(p => '<span>' + esc(p) + '</span>').join('') + '</h1>' +
           '<div class="selo" title="Aluno Rafa Chagas">' + selo('Brilho ✸ Aluno Rafa Chagas ✸ ', '#E5482A', '#FBF6EA', '#151515') + '</div></div>' +
         '<svg class="pincelada" viewBox="0 0 420 40" preserveAspectRatio="none" aria-hidden="true"><path d="M6 20 C 70 6, 170 3, 260 9 C 320 12, 380 7, 414 13 C 409 20, 404 24, 411 30 C 330 28, 240 35, 150 32 C 90 31, 40 37, 8 34 C 14 29, 1 25, 6 20 Z"/></svg>' +
-        '<p class="linha">UGC creator de ' + (DADOS.nichosResumo ? '<strong>' + esc(DADOS.nichosResumo) + '</strong>' : lacMini('seus nichos')) + '</p>' +
-        '<p class="frase">' + (DADOS.frase ? esc(DADOS.frase) : lacMini('frase curta do que você faz pela marca')) + '</p>' +
-        '<ul class="provas">' + DADOS.provas.map(p => '<li><strong>' + numeroProva(p) + '</strong><span>' + esc(p.rotulo) + '</span></li>').join('') + '</ul>' +
-        '<div class="btns"><a class="btn btn-am" href="#destaques">Ver meus melhores vídeos' + seta() + '</a><a class="btn btn-ct" href="#contato">Falar comigo' + seta() + '</a></div>' +
+        '<p class="linha">' + t('linha') + (d('nichosResumo') ? '<strong>' + esc(d('nichosResumo')) + '</strong>' : lacMini('seus nichos')) + '</p>' +
+        '<p class="frase">' + (d('frase') ? esc(d('frase')) : lacMini('frase curta do que você faz pela marca')) + '</p>' +
+        '<ul class="provas">' + lista('provas').map(p => '<li><strong>' + numeroProva(p) + '</strong><span>' + esc(p.rotulo) + '</span></li>').join('') + '</ul>' +
+        '<div class="btns"><a class="btn btn-am" href="#destaques">' + t('verVideos') + seta() + '</a><a class="btn btn-ct" href="#contato">' + t('falarComigo') + seta() + '</a></div>' +
       '</div>' +
       '<div class="capa-foto">' +
         '<svg class="blob" viewBox="0 0 500 520" preserveAspectRatio="none" aria-hidden="true"><path d="M58 118 C 92 38, 214 8, 322 26 C 424 44, 494 112, 482 218 C 474 296, 502 372, 436 446 C 366 516, 244 506, 150 482 C 66 462, 8 396, 18 304 C 26 226, 24 182, 58 118 Z"/><path d="M470 120 C 490 140, 498 170, 492 196" fill="none" stroke="#F2B416" stroke-width="14" stroke-linecap="round"/></svg>' +
@@ -481,8 +553,9 @@ function montarCapa(){
 }
 
 function montarSobre(){
-  const texto = DADOS.sobreTexto
-    ? DADOS.sobreTexto.split(/\n\s*\n/).map(p => '<p>' + esc(p.trim()) + '</p>').join('')
+  const sobre = d('sobreTexto');
+  const texto = sobre
+    ? sobre.split(/\n\s*\n/).map(p => '<p>' + esc(p.trim()) + '</p>').join('')
     : lacTxt('Escreva em primeira pessoa: quem você é, onde mora, sua rotina e por que as marcas de ' + (DADOS.nichosResumo || 'seu nicho') + ' combinam com você.', 'DADOS.sobreTexto');
   document.getElementById('sobre').innerHTML =
     '<div class="wrap sobre-grid">' +
@@ -492,19 +565,19 @@ function montarSobre(){
         foto(DADOS.fotoSobre, DADOS.nome + ' no dia a dia', 'Você no dia a dia: gravando, editando ou no seu cantinho de trabalho', DADOS.fotoSobre || 'midia/sobre.jpg') +
       '</div>' +
       '<div class="sobre-txt">' +
-        '<p class="kicker">Sobre mim</p>' +
-        '<h2 class="tit">Oie, sou a <span class="mao">Isa!' + sublinhado() + '</span></h2>' +
+        '<p class="kicker">' + t('sobre') + '</p>' +
+        '<h2 class="tit">' + t('oie') + '<span class="mao">Isa!' + sublinhado() + '</span></h2>' +
         '<div class="texto-sobre">' + texto + '</div>' +
         '<div class="assina"><p class="assinatura">' + esc(DADOS.nome) + '</p>' +
-          '<svg class="circ-am" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ca" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs><circle cx="100" cy="100" r="96" fill="#F2B416" stroke="#151515" stroke-width="3"/><text fill="#151515"><textPath href="#ca" textLength="436" lengthAdjust="spacing">Aluno da Rafa Chagas · formado no método ✸ </textPath></text><text x="100" y="122" text-anchor="middle" fill="#E5482A" style="font:900 60px var(--tx)">✸</text></svg>' +
+          '<svg class="circ-am" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ca" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs><circle cx="100" cy="100" r="96" fill="#F2B416" stroke="#151515" stroke-width="3"/><text fill="#151515"><textPath href="#ca" textLength="436" lengthAdjust="spacing">' + esc(t('circulo')) + '</textPath></text><text x="100" y="122" text-anchor="middle" fill="#E5482A" style="font:900 60px var(--tx)">✸</text></svg>' +
         '</div>' +
-        '<p class="metodo"><span class="est" aria-hidden="true">✸</span> Formado no Método Profissão do Futuro · aluno da Rafa Chagas</p>' +
+        '<p class="metodo"><span class="est" aria-hidden="true">✸</span> ' + t('metodo') + '</p>' +
       '</div>' +
     '</div>' +
     '<div class="faz"><div class="wrap">' +
-      '<h2 class="tit">O que eu faço pela <span class="mao">sua marca' + sublinhado() + '</span></h2>' +
-      '<div class="dif">' + DADOS.diferenciais.map(d => '<div>' + (IC[d.icone] || IC.alvo) + '<h3>' + esc(d.titulo) + '</h3><p>' + esc(d.texto) + '</p></div>').join('') + '</div>' +
-      '<div class="nums">' + DADOS.provas.map(p => '<div><strong>' + numeroProva(p) + '</strong><span>' + esc(p.rotulo) + '</span></div>').join('') + '</div>' +
+      '<h2 class="tit">' + t('fazTit') + '<span class="mao">' + t('fazMao') + sublinhado() + '</span></h2>' +
+      '<div class="dif">' + lista('diferenciais').map(d => '<div>' + (IC[d.icone] || IC.alvo) + '<h3>' + esc(d.titulo) + '</h3><p>' + esc(d.texto) + '</p></div>').join('') + '</div>' +
+      '<div class="nums">' + lista('provas').map(p => '<div><strong>' + numeroProva(p) + '</strong><span>' + esc(p.rotulo) + '</span></div>').join('') + '</div>' +
     '</div></div>';
 }
 
@@ -525,16 +598,16 @@ function montarFaixa(){
 }
 
 function montarDestaques(){
-  const ds = (DADOS.destaques || []).slice(0,3);
+  const ds = lista('destaques').slice(0,3);
   while (ds.length < 3) ds.push({});
   document.getElementById('destaques').innerHTML =
     '<div class="wrap dest-grid">' +
       '<div class="dest-txt">' +
-        '<p class="kicker">Destaques</p>' +
-        '<h2 class="tit">Meus melhores vídeos</h2>' +
+        '<p class="kicker">' + t('destaques') + '</p>' +
+        '<h2 class="tit">' + t('destTit') + '</h2>' +
         '<svg class="ondas" viewBox="0 0 150 20" aria-hidden="true"><path d="M3 10 Q 15 1 27 10 T 51 10 T 75 10 T 99 10 T 123 10 T 147 10"/></svg>' +
-        '<p>Gancho forte, roteiro com estratégia e edição pronta pra anúncio. Clique no vídeo pra assistir com som.</p>' +
-        '<a class="btn btn-am" href="#contato">Quero um assim' + seta() + '</a>' +
+        '<p>' + t('destP') + '</p>' +
+        '<a class="btn btn-am" href="#contato">' + t('querUm') + seta() + '</a>' +
       '</div>' +
       '<div class="trilho">' + ds.map((v,i) => cardVideo(v, {
           auto: i === 0,
@@ -549,15 +622,15 @@ function montarNichos(){
   const ns = DADOS.nichos || [];
   document.getElementById('nichos').innerHTML =
     '<div class="wrap">' +
-      '<p class="kicker">Conteúdo por nichos</p>' +
-      '<h2 class="tit">Ache o vídeo do <span class="mao">seu nicho' + sublinhado() + '</span></h2>' +
+      '<p class="kicker">' + t('nichosK') + '</p>' +
+      '<h2 class="tit">' + t('nichosTit') + '<span class="mao">' + t('nichosMao') + sublinhado() + '</span></h2>' +
       '<div class="abas" role="tablist" aria-label="Nichos">' + ns.map((n,i) =>
-        '<button class="aba" type="button" role="tab" id="aba-' + slug(n.nome) + '" aria-controls="painel-' + slug(n.nome) + '" aria-selected="' + (i===0) + '" tabindex="' + (i===0?0:-1) + '">' + esc(n.nome) + '</button>').join('') + '</div>' +
+        '<button class="aba" type="button" role="tab" id="aba-' + slug(n.nome) + '" aria-controls="painel-' + slug(n.nome) + '" aria-selected="' + (i===0) + '" tabindex="' + (i===0?0:-1) + '">' + esc(nomeNicho(i)) + '</button>').join('') + '</div>' +
       ns.map((n,i) => {
         const pasta = 'midia/nichos/' + slug(n.nome) + '/';
         const vs = n.videos || [];
-        const cards = vs.map((v,j) => cardVideo(v, { nicho:n.nome, reserva: n.nome + ' ' + (j+1), arq: pasta + (j+1) + '.mp4', dica: 'Vídeo de ' + n.nome })).join('');
-        const vazios = vs.length ? '' : [1,2,3].map(j => cardVideo({}, { nicho:n.nome, arq: pasta + j + '.mp4', dica: 'Vídeo de ' + n.nome })).join('');
+        const cards = vs.map((v,j) => cardVideo(v, { nicho:nomeNicho(i), reserva: n.nome + ' ' + (j+1), arq: pasta + (j+1) + '.mp4', dica: 'Vídeo de ' + n.nome })).join('');
+        const vazios = vs.length ? '' : [1,2,3].map(j => cardVideo({}, { nicho:nomeNicho(i), arq: pasta + j + '.mp4', dica: 'Vídeo de ' + n.nome })).join('');
         return '<div class="painel" role="tabpanel" id="painel-' + slug(n.nome) + '" aria-labelledby="aba-' + slug(n.nome) + '"' + (i===0 ? '' : ' hidden') + '>' +
           '<p class="aviso">mínimo 3 vídeos: com menos, tire o nicho</p>' +
           '<div class="grade">' + cards + vazios + '</div></div>';
@@ -588,17 +661,17 @@ function montarElogios(){
   while (es.length < 3) es.push({});
   const lista = (DADOS.marcas || []).map(m => typeof m === 'string' ? m : (m && m.nome)).filter(Boolean);
   document.getElementById('marcas').innerHTML =
-    '<div class="selo selo-branco">' + selo('Feedback ✸ real ✸ feedback ✸ real ✸ ', '#FBF6EA', '#E5482A', '#E5482A') + '</div>' +
+    '<div class="selo selo-branco">' + selo(t('seloFeedback'), '#FBF6EA', '#E5482A', '#E5482A') + '</div>' +
     '<div class="wrap">' +
-      '<p class="kicker">Depoimentos</p>' +
-      '<h2 class="tit"><span class="aspas" aria-hidden="true">“</span><span>O que as marcas falam</span></h2>' +
+      '<p class="kicker">' + t('depo') + '</p>' +
+      '<h2 class="tit"><span class="aspas" aria-hidden="true">“</span><span>' + t('marcasTit') + '</span></h2>' +
       '<div class="depo">' + es.map(e => '<article>' +
         (e.texto ? '<blockquote>“' + esc(e.texto) + '”</blockquote>' : '') +
         (e.print ? '<div class="print"><img src="' + esc(e.print) + '" alt="Print do depoimento de ' + esc(e.marca || 'marca') + '" loading="lazy"></div>' : '') +
         (!e.texto && !e.print ? lacTxt('Cole aqui a frase ou o print real da marca', 'DADOS.elogios') : '') +
         '<div class="quem"><b>' + (e.marca ? esc(e.marca) : lacMini('nome da marca')) + '</b><small>' + (e.detalhe ? esc(e.detalhe) : 'contexto: produto, campanha ou resultado') + '</small></div>' +
       '</article>').join('') + '</div>' +
-      '<div class="atend"><p class="kicker">Marcas que já atendi</p>' +
+      '<div class="atend"><p class="kicker">' + t('atend') + '</p>' +
         (lista.length ? '<ul class="atend-lista">' + lista.map((m,i) => (i ? '<li class="est" aria-hidden="true">✸</li>' : '') + '<li>' + esc(m) + '</li>').join('') + '</ul>'
                       : '<div style="margin-top:14px">' + lacTxt('Liste aqui as marcas que você já atendeu', 'DADOS.marcas') + '</div>') +
       '</div>' +
@@ -613,35 +686,35 @@ function montarContato(){
     '<div class="wrap">' +
       '<div class="ct-grid' + (temForm ? '' : ' so') + '">' +
         '<div class="ct-txt">' +
-          '<p class="kicker">Contato</p>' +
-          '<h2 class="tit">Bora criar <span class="mao">junto?' + sublinhado() + '</span></h2>' +
-          '<p>Me conta do seu produto e eu te respondo com ideia de roteiro, formatos e prazo.</p>' +
+          '<p class="kicker">' + t('contato') + '</p>' +
+          '<h2 class="tit">' + t('ctTit') + '<span class="mao">' + t('ctMao') + sublinhado() + '</span></h2>' +
+          '<p>' + t('ctP') + '</p>' +
           '<div class="btns">' + btnContato('btn-pt') +
             (insta ? '<a class="btn btn-ct" href="https://instagram.com/' + esc(insta) + '" target="_blank" rel="noopener">' + IC.insta + '@' + esc(insta) + seta() + '</a>' : '') +
           '</div>' +
         '</div>' +
         (temForm ?
         '<div class="form" id="orcamento">' +
-          '<h3>Pede um orçamento rapidinho</h3>' +
+          '<h3>' + t('formTit') + '</h3>' +
           '<form novalidate>' +
             '<div class="campos">' +
-              '<div><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" required autocomplete="name"></div>' +
-              '<div><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" required autocomplete="organization"></div>' +
-              '<div class="cheio"><label for="f-produto">Produto</label><input id="f-produto" name="produto" required placeholder="o que vamos divulgar?"></div>' +
-              '<div><label for="f-prazo">Prazo</label><input id="f-prazo" name="prazo" required placeholder="pra quando?"></div>' +
-              '<div><label for="f-zap">WhatsApp</label><input id="f-zap" name="whatsapp" type="tel" required autocomplete="tel" placeholder="(00) 00000-0000"></div>' +
+              '<div><label for="f-nome">' + t('fNome') + '</label><input id="f-nome" name="nome" required autocomplete="name"></div>' +
+              '<div><label for="f-empresa">' + t('fEmpresa') + '</label><input id="f-empresa" name="empresa" required autocomplete="organization"></div>' +
+              '<div class="cheio"><label for="f-produto">' + t('fProduto') + '</label><input id="f-produto" name="produto" required placeholder="' + t('fProdutoPh') + '"></div>' +
+              '<div><label for="f-prazo">' + t('fPrazo') + '</label><input id="f-prazo" name="prazo" required placeholder="' + t('fPrazoPh') + '"></div>' +
+              '<div><label for="f-zap">' + t('fZap') + '</label><input id="f-zap" name="whatsapp" type="tel" required autocomplete="tel" placeholder="(00) 00000-0000"></div>' +
             '</div>' +
             '<div class="gotcha" aria-hidden="true"><label>Não preencha<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>' +
-            '<button class="btn btn-am" type="submit">Pedir orçamento' + seta() + '</button>' +
-            '<div class="form-erro" hidden><p>Não consegui enviar agora. Me chama direto:</p>' + btnContato('btn-pt') + '</div>' +
+            '<button class="btn btn-am" type="submit">' + t('fEnviar') + seta() + '</button>' +
+            '<div class="form-erro" hidden><p>' + t('fErro') + '</p>' + btnContato('btn-pt') + '</div>' +
           '</form>' +
         '</div>' : '') +
       '</div>' +
-      '<div class="duv">' + (DADOS.duvidas || []).map(d => '<div><h3>' + esc(d.pergunta) + '</h3>' + (d.resposta ? '<p>' + esc(d.resposta) + '</p>' : lacTxt(d.dica || 'Escreva a resposta', '')) + '</div>').join('') + '</div>' +
+      '<div class="duv">' + lista('duvidas').map(d => '<div><h3>' + esc(d.pergunta) + '</h3>' + (d.resposta ? '<p>' + esc(d.resposta) + '</p>' : lacTxt(d.dica || 'Escreva a resposta', '')) + '</div>').join('') + '</div>' +
     '</div>' +
     '<div class="cta-am">' +
       '<svg class="explosao" viewBox="0 0 200 200" aria-hidden="true"><polygon points="' + pontosExplosao() + '"/></svg>' +
-      '<div class="wrap"><h2 class="tit">Bora fazer um vídeo que <span class="mao">vende?' + sublinhado() + '</span></h2>' +
+      '<div class="wrap"><h2 class="tit">' + t('ctaTit') + '<span class="mao">' + t('ctaMao') + sublinhado() + '</span></h2>' +
       '<div class="btns">' + btnContato('btn-pt') + '</div></div>' +
     '</div>';
 
@@ -675,7 +748,7 @@ function ligarFormulario(){
     try {
       const r = await fetch(DADOS.formspree, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } });
       if (!r.ok) throw new Error('falhou');
-      caixa.innerHTML = '<p class="form-ok">Recebi! Te chamo em breve.</p>';
+      caixa.innerHTML = '<p class="form-ok">' + t('formOk') + '</p>';
     } catch (err) {
       erro.hidden = false; bt.disabled = false;
     }
@@ -685,7 +758,7 @@ function ligarFormulario(){
 function montarRodape(){
   document.getElementById('rodape').innerHTML =
     '<div class="wrap"><p class="logo">' + esc(DADOS.nome) + ' <span class="est" aria-hidden="true">✸</span></p>' +
-    '<p>UGC creator · aluno da Rafa Chagas · ' + new Date().getFullYear() + '</p></div>';
+    '<p>' + t('rodape') + ' · ' + new Date().getFullYear() + '</p></div>';
 }
 
 /* ---------- vídeos: hover, autoplay do 1º destaque, player ---------- */
@@ -720,11 +793,19 @@ function fecharPlayer(){
 }
 
 let autoVisivel = false;
-function ligarVideos(){
+let obsAuto = null;
+function ligarPlayer(){
   document.addEventListener('click', e => {
     const box = e.target.closest('button.vbox');
     if (box) abrirPlayer(box.dataset.src, box.dataset.titulo);
   });
+  const player = document.getElementById('player');
+  document.getElementById('player-x').addEventListener('click', fecharPlayer);
+  player.addEventListener('click', e => { if (e.target === player) fecharPlayer(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharPlayer(); });
+}
+function ligarVideos(){
+  if (obsAuto) { obsAuto.disconnect(); obsAuto = null; }
   if (temMouse) {
     document.querySelectorAll('button.vbox').forEach(box => {
       const v = box.querySelector('video');
@@ -737,19 +818,16 @@ function ligarVideos(){
   if (auto) {
     auto.closest('.vbox').classList.add('tocando');
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(ent => {
+      obsAuto = new IntersectionObserver(ent => {
         ent.forEach(x => {
           autoVisivel = x.isIntersecting;
           if (x.isIntersecting && document.getElementById('player').hidden) auto.play().catch(() => {});
           else auto.pause();
         });
-      }, { threshold:.35 }).observe(auto);
+      }, { threshold:.35 });
+      obsAuto.observe(auto);
     }
   }
-  const player = document.getElementById('player');
-  document.getElementById('player-x').addEventListener('click', fecharPlayer);
-  player.addEventListener('click', e => { if (e.target === player) fecharPlayer(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharPlayer(); });
 }
 
 /* ---------- métricas (Umami): só entra se DADOS.umami tiver o ID ---------- */
@@ -774,10 +852,33 @@ function abrirNichoDoLink(){
   setTimeout(() => document.getElementById('nichos').scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block:'start' }), 60);
 }
 
-function montar(){
+function montarPagina(){
+  faltando.length = 0;
   montarMenu(); montarCapa(); montarSobre(); montarFaixa(); montarDestaques();
   montarNichos(); montarElogios(); montarContato(); montarRodape();
-  ligarVideos(); ligarMetricas(); abrirNichoDoLink();
+  ligarVideos();
+}
+function aplicarIdioma(l){
+  LANG = l === 'en' ? 'en' : 'pt';
+  document.documentElement.lang = LANG === 'en' ? 'en' : 'pt-BR';
+}
+/* Botões PT / EN: remonta a página no outro idioma, no mesmo lugar */
+function trocarIdioma(l){
+  if (l === LANG) return;
+  const aba = [...document.querySelectorAll('#nichos .aba')].findIndex(a => a.getAttribute('aria-selected') === 'true');
+  const y = window.scrollY;
+  aplicarIdioma(l);
+  try { localStorage.setItem('idioma', LANG); } catch (e) {}
+  montarPagina();
+  if (aba > 0) selecionarNicho(aba);
+  window.scrollTo({ top: y, behavior: 'instant' });
+  const b = document.querySelector('.idioma [data-lang="' + LANG + '"]');
+  if (b) b.focus();
+}
+function montar(){
+  aplicarIdioma(idiomaInicial());
+  montarPagina();
+  ligarPlayer(); ligarMetricas(); abrirNichoDoLink();
   if (faltando.length) console.warn('[portfólio] Estes links não tocam na tag video. Baixe o .mp4 e coloque na pasta midia:', faltando);
 }
 document.addEventListener('DOMContentLoaded', montar);
@@ -802,8 +903,8 @@ const DADOS = {
   email: 'isadorapandini1822@gmail.com',
 
   // Endereço do site depois de publicado (ex.: 'https://isadorapandini.vercel.app').
-  // Lembre de trocar também o "MEU-LINK" das tags og: lá no <head>.
-  site: '',
+  // Se mudar, troque também as tags og: lá no <head>.
+  site: 'https://isapandini.github.io/ugc/',
 
   // Endereço do formulário do Formspree (ex.: 'https://formspree.io/f/abcdwxyz').
   // Vazio = o formulário de orçamento não aparece, só os botões.
@@ -903,7 +1004,37 @@ const DADOS = {
     { pergunta: 'Por quanto tempo?',           resposta: '', dica: 'Ex.: 3, 6 ou 12 meses de direito de uso.' },
     { pergunta: 'Tem exclusividade?',          resposta: '', dica: 'Ex.: se você grava pra concorrentes e por quanto tempo não grava.' },
     { pergunta: 'Qual o prazo?',               resposta: 'Entrego em até 10 dias.' }
-  ]
+  ],
+
+  // VERSÃO EM INGLÊS (botão EN no topo). Mesma ordem dos campos acima.
+  // Campo vazio ou que não está aqui = aparece o texto em português.
+  en: {
+    nichosResumo: 'beauty, skincare, food, fitness, supplements and pets',
+    frase: 'I turn your brand’s essence into content that sells.',
+    sobreTexto: 'I’m 23, in my final year of medical school, engaged, a pet mom and a Christian. I’m fascinated by self-care, sports, wellness and everything related to health and self-esteem.\n\nI bring a careful, strategic eye to turn real experiences into content that builds connection and drives sales, in a clear and natural way. I connect brands aligned with these values with women aged 18 to 45.',
+    provas: [
+      { rotulo: 'videos recorded' },
+      { rotulo: 'brands served' },
+      { numero: '10 days', rotulo: 'delivery time' }
+    ],
+    diferenciais: [
+      { titulo: 'I study your customer’s pain',  texto: 'Before filming, I learn who buys from your brand and what holds them back.' },
+      { titulo: 'My script, approved by you',    texto: 'I write the script and the brand approves it before I hit record.' },
+      { titulo: 'Ad-ready editing',              texto: 'A strong hook in the first seconds and clean audio, ready to run.' }
+    ],
+    // Títulos dos vídeos em inglês (opcional), na mesma ordem dos destaques
+    destaques: [ { titulo: '' }, { titulo: '' }, { titulo: '' } ],
+    nichos: [
+      { nome: 'Beauty' }, { nome: 'Skincare' }, { nome: 'Food' },
+      { nome: 'Fitness' }, { nome: 'Supplements' }, { nome: 'Pets' }
+    ],
+    duvidas: [
+      { pergunta: 'Where can I use the content?', resposta: '' },
+      { pergunta: 'For how long?',                resposta: '' },
+      { pergunta: 'Is it exclusive?',             resposta: '' },
+      { pergunta: 'What’s the turnaround?',       resposta: 'Delivered within 10 days.' }
+    ]
+  }
 };
 </script>
 </body>
