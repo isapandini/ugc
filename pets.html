@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pets · Isadora Pandini · UGC</title>
+<meta name="description" content="Vídeos UGC para marcas pet, testados com meu próprio pet. Isadora Pandini, UGC creator.">
+
+<!-- Prévia do link (WhatsApp, Instagram etc.) -->
+<meta property="og:title" content="Pets · Isadora Pandini · UGC creator">
+<meta property="og:description" content="Vídeos UGC para marcas pet, testados com meu próprio pet.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://isapandini.github.io/ugc/pets.html">
+<meta property="og:image" content="https://isapandini.github.io/ugc/midia/capa.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="estilo.css" charset="utf-8">
+</head>
+<!-- Página do nicho Pets. O conteúdo (descrição e vídeos) vem de dados.js -->
+<body data-nicho="pets">
+
+<header class="topo" id="topo"></header>
+<main>
+  <section id="nicho-capa" class="nh"></section>
+  <section id="nicho-videos" class="nh-videos"></section>
+  <section id="outros" class="nh-outros"></section>
+  <section id="contato" class="contato"></section>
+</main>
+<footer class="rodape" id="rodape"></footer>
+<a class="zap" id="zap" target="_blank" rel="noopener"></a>
+
+<div class="player" id="player" hidden role="dialog" aria-modal="true" aria-label="Vídeo">
+  <div class="player-box">
+    <button class="player-x" id="player-x" type="button" aria-label="Fechar vídeo">×</button>
+    <video id="player-video" controls playsinline preload="none"></video>
+    <p class="player-tit" id="player-tit"></p>
+  </div>
+</div>
+
+<noscript><p style="padding:24px;font:16px sans-serif">Ative o JavaScript para ver o portfólio.</p></noscript>
+
+<script src="dados.js" charset="utf-8"></script>
+<script src="site.js" charset="utf-8"></script>
+</body>
+</html>
